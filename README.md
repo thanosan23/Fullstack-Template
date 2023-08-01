@@ -13,5 +13,27 @@ To run this program, you simply need to make sure you have docker installed on y
 docker-compose up -d
 ```
 
+To shut down the program, you run:
+```
+docker-compose down
+```
+
 ## Adding more parts
 Often in projects, databases are useful! You can update the `docker-compose.yml` file to add a database (e.g. redis, postgresql). This will pull in the image from the docker registry and run it on a specific port. You can use your database in your program from there!
+
+For example, in `docker-compose.yml`, under `services`, you can put:
+```yaml
+db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+
+redis:
+    image: redis
+    ports:
+      - "6379:6379"
+```
